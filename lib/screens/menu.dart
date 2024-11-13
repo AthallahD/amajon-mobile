@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:amajon_mobile/widgets/left_drawer.dart';
+import 'package:amajon_mobile/widgets/product_card.dart';
 
 class MyHomePage extends StatelessWidget {
     MyHomePage({super.key});
@@ -20,6 +22,7 @@ class MyHomePage extends StatelessWidget {
     Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white), // Ubah warna ikon
         title: const Text(
           'Amajon',
           style: TextStyle(
@@ -36,6 +39,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
+      drawer: const LeftDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -119,59 +123,4 @@ class InfoCard extends StatelessWidget {
       ),
     );
   }
-}
-
-class ItemHomepage {
-  final String name;
-  final IconData icon;
-
-  ItemHomepage(this.name, this.icon);
-}
-
-class ItemCard extends StatelessWidget {
-  final ItemHomepage item; 
-  final Color color;
-  
-  const ItemCard(this.item, {required this.color, super.key}); 
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: color,
-      borderRadius: BorderRadius.circular(20), // Rounding yang lebih besar
-      elevation: 5.0, // Tambahkan bayangan untuk efek modern
-      child: InkWell(
-        onTap: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
-            );
-        },
-        splashColor: Colors.white.withOpacity(0.3), // Tambahkan efek splash saat ditekan
-        borderRadius: BorderRadius.circular(20),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  item.icon,
-                  color: Colors.white,
-                  size: 35.0, // Ikon lebih besar
-                ),
-                const SizedBox(height: 8.0),
-                Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w500),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  } 
 }
