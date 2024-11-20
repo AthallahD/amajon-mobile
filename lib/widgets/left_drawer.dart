@@ -1,3 +1,4 @@
+import 'package:amajon_mobile/screens/list_product.dart';
 import 'package:flutter/material.dart';
 import 'package:amajon_mobile/screens/menu.dart';
 import 'package:amajon_mobile/screens/productentry_form.dart';
@@ -48,6 +49,16 @@ class LeftDrawer extends StatelessWidget {
                     builder: (context) => MyHomePage(),
                   ));
             },
+          ),
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('Daftar Produk'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProductEntryPage())
+              );
+            } 
           ),
           ListTile(
             leading: const Icon(Icons.production_quantity_limits_rounded),
